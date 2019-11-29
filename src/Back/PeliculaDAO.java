@@ -26,7 +26,7 @@ public class PeliculaDAO implements IPeliculasDAO {
     }
 
     @Override
-    public Peliculas buscarPeliculaPorCategoria(String categoria) {
+    public String buscarPeliculaPorCategoria(String categoria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
