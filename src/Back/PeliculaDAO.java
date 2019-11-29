@@ -18,8 +18,8 @@ public class PeliculaDAO implements IPeliculasDAO {
             ps = con.prepareStatement("select * from Peliculas where nombre like '?%' ");
             ps.setString(1, nombre);
             rs = ps.executeQuery();
-            String imagen = rs.getString("imagen");
-            return imagen;
+            String busqueda = rs.getString("nombre");
+            return busqueda;
         } catch (Exception e) {
             return null;
         }
@@ -27,12 +27,45 @@ public class PeliculaDAO implements IPeliculasDAO {
 
     @Override
     public String buscarPeliculaPorCategoria(String categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection con = null;
+            con = getConexion();
+            ps = con.prepareStatement("select * from Peliculas where genero = ? ");
+            ps.setString(1, categoria);
+            rs = ps.executeQuery();
+            String nombre = rs.getString("nombre");
+            return nombre;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public void calificarPelicula() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int contarPeliculas(String categoria) {
+        int cant = 0;
+        try {
+            Connection con = null;
+            con = getConexion();
+            if (categoria.equalsIgnoreCase("inicio")) {
+                ps = con.prepareStatement("select count(nombre) from Peliculas ");
+                rs = ps.executeQuery();
+                cant = rs.getInt("count(nombre)");
+                return cant;
+            } else {
+                ps = con.prepareStatement("select count(nombre) from Peliculas where genero = ? ");
+                ps.setString(1, categoria);
+                rs = ps.executeQuery();
+                cant = rs.getInt("count(nombre)");
+                return cant;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+
     }
 
 }
