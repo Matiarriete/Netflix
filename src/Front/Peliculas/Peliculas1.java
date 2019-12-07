@@ -234,6 +234,11 @@ public class Peliculas1 extends javax.swing.JPanel {
         lblInicio.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblInicio.setForeground(new java.awt.Color(255, 255, 255));
         lblInicio.setText("Inicio");
+        lblInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInicioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPeliLayout = new javax.swing.GroupLayout(pnlPeli);
         pnlPeli.setLayout(pnlPeliLayout);
@@ -310,6 +315,8 @@ public class Peliculas1 extends javax.swing.JPanel {
         add(pnlPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(-230, 50, 230, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+        MostrarPeliculasTodas mostrar = new MostrarPeliculasTodas();
+        jScrollPane1.setViewportView(mostrar);
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 900, 650));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -387,12 +394,19 @@ public class Peliculas1 extends javax.swing.JPanel {
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         CerrarSesion cerr = new CerrarSesion();
         cerr.setLocation(0, 0);
-        cerr.setSize(900,700);
+        cerr.setSize(900, 700);
         panelPrincipal1.removeAll();
         panelPrincipal1.add(cerr, BorderLayout.CENTER);
         panelPrincipal1.revalidate();
         panelPrincipal1.repaint();
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
+        MostrarPeliculasTodas mostrar = new MostrarPeliculasTodas();
+        jScrollPane1.setViewportView(mostrar);
+        Animacion.Animacion.mover_izquierda(0, -230, 2, 2, pnlPeli);
+        menPeli = 0;
+    }//GEN-LAST:event_lblInicioMouseClicked
 
     public int idUsuario() {
         IUsuarioDAO uDao = new UsuarioDAO();
