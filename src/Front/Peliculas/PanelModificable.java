@@ -1,11 +1,15 @@
 package Front.Peliculas;
 
+import Back.PeliculaDAO;
+
 
 public class PanelModificable extends javax.swing.JPanel {
 
     
     public PanelModificable(String categoria) {
         initComponents();
+        PeliculaDAO pDao = new PeliculaDAO();
+        pDao.buscarPeliculaPorCategoria(categoria);
     }
 
    
