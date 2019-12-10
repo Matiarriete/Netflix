@@ -90,6 +90,9 @@
       </Layout>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlAccion">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="PanelModificable mod = new PanelModificable(&quot;Accion&quot;);&#xa;mod.setSize(880, 200);&#xa;mod.setLocation(0, 0);&#xa;pnlAccion.removeAll();&#xa;pnlAccion.add(mod, BorderLayout.CENTER);&#xa;pnlAccion.revalidate();&#xa;pnlAccion.repaint();"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

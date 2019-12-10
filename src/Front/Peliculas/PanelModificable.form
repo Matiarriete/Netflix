@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="0" red="0" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -18,8 +23,26 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="93" max="-2" attributes="0"/>
-              <EmptySpace pref="777" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="foto1" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto2" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto3" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto4" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto5" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto6" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="foto7" min="-2" pref="110" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="nomCategoria" min="-2" pref="93" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -27,17 +50,72 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <Component id="nomCategoria" min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="foto2" pref="158" max="32767" attributes="0"/>
+                  <Component id="foto1" max="32767" attributes="0"/>
+                  <Component id="foto4" alignment="0" pref="158" max="32767" attributes="0"/>
+                  <Component id="foto3" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="foto6" alignment="3" pref="158" max="32767" attributes="0"/>
+                      <Component id="foto7" alignment="3" pref="158" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="foto5" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="nomCategoria">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="13" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="categoria" type="code"/>
+        </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String cat;&#xa;int numero = 1;&#xa;foto1.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto2">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto2.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto3">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto3.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto4">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto4.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto5">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto5.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto6">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto6.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="foto7">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="foto7.setIcon(new ImageIcon(Back.Imagenes.peliculas + pDao.buscarPeliculaPorCategoria(categoria, numero)));&#xa;numero = numero + 1;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

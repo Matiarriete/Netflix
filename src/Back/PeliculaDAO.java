@@ -26,14 +26,19 @@ public class PeliculaDAO implements IPeliculasDAO {
     }
 
     @Override
-    public String buscarPeliculaPorCategoria(String categoria) {
+    public String buscarPeliculaPorCategoria(String categoria, int numero) {
         try {
+            String nombre;
             Connection con = null;
             con = getConexion();
             ps = con.prepareStatement("select * from Peliculas where genero = ? ");
             ps.setString(1, categoria);
             rs = ps.executeQuery();
-            String nombre = rs.getString("nombre");
+            do {                
+                nombre = rs.getString("nombre");
+                rs.next();
+            } while (numero != rs.getRow() - 1);
+            
             return nombre;
         } catch (Exception e) {
             return null;

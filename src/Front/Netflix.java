@@ -10,7 +10,6 @@ public class Netflix extends javax.swing.JFrame {
         InicioSesion1 ini = new InicioSesion1();
         ini.setSize(900, 700);
         ini.setLocation(0, 0);
-        ini.setLocation(0, 0);
         panelPrincipal1.removeAll();
         panelPrincipal1.add(ini, BorderLayout.CENTER);
         panelPrincipal1.revalidate();

@@ -5,6 +5,8 @@
  */
 package Front.Peliculas;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author matia
@@ -52,6 +54,14 @@ public class MostrarPeliculasTodas extends javax.swing.JPanel {
             pnlRecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 423, Short.MAX_VALUE)
         );
+
+        PanelModificable mod = new PanelModificable("Accion");
+        mod.setSize(880, 200);
+        mod.setLocation(0, 0);
+        pnlAccion.removeAll();
+        pnlAccion.add(mod, BorderLayout.CENTER);
+        pnlAccion.revalidate();
+        pnlAccion.repaint();
 
         javax.swing.GroupLayout pnlAccionLayout = new javax.swing.GroupLayout(pnlAccion);
         pnlAccion.setLayout(pnlAccionLayout);
@@ -228,13 +238,6 @@ public class MostrarPeliculasTodas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel pnlAccion;
     private javax.swing.JPanel pnlAventuras;
     private javax.swing.JPanel pnlCFiccion;
