@@ -1,26 +1,37 @@
 package Front.InicioSesion;
 
+import Back.Conexion;
 import Back.IUsuarioDAO;
 import Back.Usuario;
 import Back.UsuarioDAO;
+import Front.CambiarPanel;
 import static Front.Netflix.panelPrincipal1;
 import Front.Registro.Registro1Pag;
+import Front.Registro.Registro7Pag;
+import Front.Registro.Registro9Pag;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 public class InicioSesion1 extends javax.swing.JPanel {
 
     public InicioSesion1() {
+
         initComponents();
+
     }
 
-    IUsuarioDAO uDao;
+    IUsuarioDAO uDao = new UsuarioDAO();
     Usuario user = new Usuario();
+    Usuario usuarioParaRec = new Usuario();
     String mail;
     String contrasena;
     public static int id;
+    public static int o = 0; // Para ver en donde quedo el registro
+    int j = 0; // Para ver cuando esta apretado el btnMostrar
+    int k = 0; // Ver si esta dentro de txtContrasena para poder apretar btnMostrar
+    int m = 0; // variable para buscar recuerdame
+    int n = 0; // Variable para ver si el check esta activado o no
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -130,7 +141,6 @@ public class InicioSesion1 extends javax.swing.JPanel {
         txtContrasena.setText("Contraseña");
         txtContrasena.setBorder(null);
         txtContrasena.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtContrasena.setFocusable(false);
         txtContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtContrasenaFocusGained(evt);
@@ -139,16 +149,17 @@ public class InicioSesion1 extends javax.swing.JPanel {
                 txtContrasenaFocusLost(evt);
             }
         });
-        txtContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtContrasenaMouseClicked(evt);
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyReleased(evt);
             }
         });
         add(txtContrasena);
         txtContrasena.setBounds(320, 250, 280, 30);
 
         txtMail.setBackground(new java.awt.Color(51, 51, 51));
-        txtMail.setText("Mail");
+        txtMail.setText(mail);
+        verificarExistRec();
         txtMail.setCaretColor(Color.WHITE);
         txtMail.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         txtMail.setForeground(new java.awt.Color(153, 153, 153));
@@ -166,6 +177,11 @@ public class InicioSesion1 extends javax.swing.JPanel {
                 txtMailMouseClicked(evt);
             }
         });
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMailKeyReleased(evt);
+            }
+        });
         add(txtMail);
         txtMail.setBounds(320, 210, 280, 30);
 
@@ -176,7 +192,7 @@ public class InicioSesion1 extends javax.swing.JPanel {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         Registro1Pag registro = new Registro1Pag();
-        registro.setSize(900, 700);
+        registro.setSize(910, 700);
         registro.setLocation(0, 0);
         panelPrincipal1.removeAll();
         panelPrincipal1.add(registro, BorderLayout.CENTER);
@@ -190,13 +206,19 @@ public class InicioSesion1 extends javax.swing.JPanel {
         user.setMail(txtMail.getText());
         id = uDao.obtenerId(user);
         if (uDao.inicioSesion(user)) {
-            SeleccionPerfil perfil = new SeleccionPerfil(id);
-            perfil.setSize(900, 700);
-            perfil.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(perfil, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            if (o == 0) {
+                SeleccionPerfil perfil = new SeleccionPerfil(id);
+                CambiarPanel cambio = new CambiarPanel(perfil);
+                Conexion.cerrarConexion(Conexion.contarConexiones());
+            } else {
+                if (o == 7) {
+                    Registro7Pag reg7 = new Registro7Pag();
+                    CambiarPanel cambio = new CambiarPanel(reg7);
+                } else {
+                    Registro9Pag reg9 = new Registro9Pag();
+                    CambiarPanel cambio = new CambiarPanel(reg9);
+                }
+            }
         } else {
             lblAdvertencia.setVisible(true);
         }
@@ -204,11 +226,24 @@ public class InicioSesion1 extends javax.swing.JPanel {
 
     private void txtMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusGained
         txtMail.setText(mail);
+        if (jCheckBox1.isSelected()) {
+            jCheckBox1.setSelected(false);
+        }
     }//GEN-LAST:event_txtMailFocusGained
 
     private void txtContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaFocusGained
-        txtContrasena.setText(contrasena);
-        txtContrasena.setEchoChar('*');
+        if (j == 0) {
+            txtContrasena.setText(contrasena);
+            txtContrasena.setEchoChar('*');
+        } else {
+            txtContrasena.setText(contrasena);
+        }
+        k = 1;
+
+        if (jCheckBox1.isSelected()) {
+            jCheckBox1.setSelected(false);
+        }
+
     }//GEN-LAST:event_txtContrasenaFocusGained
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
@@ -216,6 +251,7 @@ public class InicioSesion1 extends javax.swing.JPanel {
         if (mail.length() == 0) {
             txtMail.setText("Mail");
         }
+        verificarExistRec();
     }//GEN-LAST:event_txtMailFocusLost
 
     private void txtContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaFocusLost
@@ -224,20 +260,55 @@ public class InicioSesion1 extends javax.swing.JPanel {
             txtContrasena.setText("Contrasena");
             txtContrasena.setEchoChar((char) 0);
         }
+        k = 0;
     }//GEN-LAST:event_txtContrasenaFocusLost
 
     private void txtMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMailMouseClicked
         txtMail.setFocusable(true);
     }//GEN-LAST:event_txtMailMouseClicked
 
-    private void txtContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContrasenaMouseClicked
-        txtContrasena.setFocusable(true);
-    }//GEN-LAST:event_txtContrasenaMouseClicked
-
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
-        jCheckBox1.setFocusable(true);
+        if (usuarioParaRec.getMail() != null || txtMail.getText().equals("Mail")) {
+            txtMail.setText("Mail");
+            txtContrasena.setText("Contrasena");
+            txtMail.setEnabled(true);
+            txtContrasena.setEnabled(true);
+            txtContrasena.setEchoChar((char) 0);
+            mail = "";
+            contrasena = "";
+            uDao.eliminarRecuerdame(m);
+            usuarioParaRec = new Usuario();
+        } else {
+            m = uDao.idAgregar(mail);
+            usuarioParaRec = uDao.buscarUsuario(m);
+            txtMail.setEnabled(false);
+            txtContrasena.setEnabled(false);
+            uDao.agregarRecuerdame(m);
+        }
     }//GEN-LAST:event_jCheckBox1MouseClicked
 
+    private void txtContrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyReleased
+        contrasena = txtContrasena.getText();
+    }//GEN-LAST:event_txtContrasenaKeyReleased
+
+    private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
+        mail = txtMail.getText();
+    }//GEN-LAST:event_txtMailKeyReleased
+
+    private void verificarExistRec() {
+        m = uDao.buscarRecuerdame();
+        if (m != 0) {
+            usuarioParaRec = uDao.buscarUsuario(m);
+            txtMail.setText(usuarioParaRec.getMail());
+            txtContrasena.setText(usuarioParaRec.getContrasena());
+            mail = usuarioParaRec.getMail();
+            contrasena = usuarioParaRec.getContrasena();
+            txtMail.setEnabled(false);
+            txtContrasena.setEnabled(false);
+            txtContrasena.setEchoChar('*');
+            jCheckBox1.setSelected(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;

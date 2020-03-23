@@ -6,13 +6,11 @@
 package Front.InicioSesion;
 
 import Back.IPerfilDAO;
-import Back.IUsuarioDAO;
 import Back.Imagenes;
 import Back.PerfilDAO;
 import Back.Perfiles;
-import Back.Usuario;
-import Back.UsuarioDAO;
-import Front.Registro.Registro4Pag;
+import Front.CambiarPanel;
+import static Front.InicioSesion.SeleccionPerfil.idUsuario;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import static Front.Netflix.panelPrincipal1;
@@ -263,12 +261,7 @@ public class ModificarPerfil extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         SeleccionPerfil sel = new SeleccionPerfil(idUsuario());
-        sel.setSize(900, 700);
-        sel.setLocation(0, 0);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(sel, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(sel);
         SeleccionPerfil.selPer = 0;
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -355,12 +348,7 @@ public class ModificarPerfil extends javax.swing.JPanel {
         }
         if (pDAO.modificarPerfil(perfil, idPerfil)) {
             SeleccionPerfil sel = new SeleccionPerfil(idUsuario());
-            sel.setSize(900, 700);
-            sel.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(sel, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(sel);
             SeleccionPerfil.selPer = 0;
         }
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -372,28 +360,10 @@ public class ModificarPerfil extends javax.swing.JPanel {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         if (pDAO.borrarPerfil(idPerfil)) {
             SeleccionPerfil sel = new SeleccionPerfil(idUsuario());
-            sel.setSize(900, 700);
-            sel.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(sel, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(sel);
             SeleccionPerfil.selPer = 0;
         }
     }//GEN-LAST:event_jLabel3MouseClicked
-
-    public int idUsuario() {
-        IUsuarioDAO uDao = new UsuarioDAO();
-        if (InicioSesion1.id == 0) {
-            Usuario user = new Usuario();
-            user.setMail(Registro4Pag.mail);
-            user.setContrasena(Registro4Pag.contrasena);
-            id = uDao.obtenerId(user);
-        } else {
-            id = InicioSesion1.id;
-        }
-        return id;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -1,5 +1,6 @@
 package Front.Registro;
 
+import Front.CambiarPanel;
 import Front.InicioSesion.InicioSesion1;
 import java.awt.BorderLayout;
 import static Front.Netflix.panelPrincipal1;
@@ -129,7 +130,7 @@ public class Registro3Pag extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(432, 432, 432)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,22 +178,12 @@ public class Registro3Pag extends javax.swing.JPanel {
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         Registro4Pag pag4 = new Registro4Pag();
-        pag4.setLocation(0, 0);
-        pag4.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(pag4, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(pag4);
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         InicioSesion1 ini = new InicioSesion1();
-        ini.setLocation(0, 0);
-        ini.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(ini, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(ini);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

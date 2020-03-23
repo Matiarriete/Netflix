@@ -11,11 +11,10 @@ import Back.TarjetaDAO;
 import Back.TipoPlanDAO;
 import Back.Usuario;
 import Back.UsuarioDAO;
-import Front.InicioSesion.InicioSesion1;
+import Front.CambiarPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
 import static Front.Netflix.panelPrincipal1;
 
 public class Registro6Pag extends javax.swing.JPanel {
@@ -29,9 +28,10 @@ public class Registro6Pag extends javax.swing.JPanel {
     IUsuarioDAO uDao = new UsuarioDAO();
     IFechaDAO fDao = new FechaDAO();
     int tipPlan = Registro2Pag.i;
-    int cambio = Registro2Pag.cambio;
-    String mail = Registro4Pag.mail;
-    String contrasena = Registro4Pag.contrasena;
+    public static int cambio;
+    Registro4Pag reg4 = new Registro4Pag();
+    String mail = reg4.mail;
+    String contrasena = reg4.contrasena;
 
     static String nombre = "Nombre";
     static String apellido = "Apellido";
@@ -41,6 +41,8 @@ public class Registro6Pag extends javax.swing.JPanel {
     static Integer anio;
     static int plan = 0;
     int a, b, c, d;
+    Calendar cal = Calendar.getInstance();
+    Integer yA = cal.get(Calendar.YEAR);
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,7 +104,7 @@ public class Registro6Pag extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
@@ -199,13 +201,13 @@ public class Registro6Pag extends javax.swing.JPanel {
         });
 
         txtCodSeguridad.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtCodSeguridad.setText(codSeguridad);
         txtCodSeguridad.setForeground(new java.awt.Color(204, 204, 204));
-        if(plan == 0 && codSeguridad.length() == 0)
-        txtCodSeguridad.setText("Código de seguridad(CVV)");
         if(plan == 1)
         {
             txtCodSeguridad.setText(codSeguridad);
             txtCodSeguridad.setForeground(new java.awt.Color(0, 0, 0));
+
         }
         txtCodSeguridad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -288,15 +290,16 @@ public class Registro6Pag extends javax.swing.JPanel {
             y++;
         }
 
+        if(plan == 1){
+            jComboBox2.setSelectedIndex(anio - yA);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -337,6 +340,7 @@ public class Registro6Pag extends javax.swing.JPanel {
                         .addComponent(lblApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblNTarjeta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,6 +396,10 @@ public class Registro6Pag extends javax.swing.JPanel {
                         .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+
+        if(plan == 1){
+            jComboBox1.setSelectedIndex(mes - 1);
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -399,8 +407,6 @@ public class Registro6Pag extends javax.swing.JPanel {
         Tarjeta tar = new Tarjeta();
         Fecha f = new Fecha();
         Usuario user = new Usuario();
-        Calendar c = Calendar.getInstance();
-        Integer yA = c.get(Calendar.YEAR);
         tar.setApeTitular(apellido);
         tar.setNomTitular(nombre);
         tar.setNumTarjeta(Long.parseLong(numTarjeta));
@@ -416,12 +422,7 @@ public class Registro6Pag extends javax.swing.JPanel {
             boolean v = uDao.registrarUsuario(user);
             if (v) {
                 Registro7Pag pag7 = new Registro7Pag();
-                pag7.setLocation(0, 0);
-                pag7.setSize(900, 700);
-                panelPrincipal1.removeAll();
-                panelPrincipal1.add(pag7, BorderLayout.CENTER);
-                panelPrincipal1.revalidate();
-                panelPrincipal1.repaint();
+                CambiarPanel cambio = new CambiarPanel(pag7);
             }
         } else {
             lblNTarjeta.setText("Este numero de tarjeta ya fue utilizado");
@@ -431,7 +432,7 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if (a == 0) {
+        if (a == 0 && plan == 0) {
             nombre = "";
         }
         txtNombre.setText(nombre);
@@ -440,8 +441,15 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombreFocusGained
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
-        nombre = txtNombre.getText();
+        if (txtNombre.getText().equals("")) {
+            txtNombre.setText("Nombre");
+            txtNombre.setForeground(new Color(204, 204, 204));
+            a = 0;
+        } else {
+            nombre = txtNombre.getText();
+        }
         verificarNombre(nombre);
+
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
@@ -450,7 +458,7 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
-        if (b == 0) {
+        if (b == 0 && plan == 0) {
             apellido = "";
         }
         txtApellido.setText(apellido);
@@ -459,8 +467,15 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoFocusGained
 
     private void txtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusLost
-        apellido = txtApellido.getText();
+        if (txtApellido.getText().equals("")) {
+            txtApellido.setText("Apellido");
+            txtApellido.setForeground(new Color(204, 204, 204));
+            b = 0;
+        } else {
+            apellido = txtApellido.getText();
+        }
         verificarApellido(apellido);
+
     }//GEN-LAST:event_txtApellidoFocusLost
 
     private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
@@ -469,7 +484,7 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoKeyReleased
 
     private void txtNumTarjetaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumTarjetaFocusGained
-        if (c == 0) {
+        if (c == 0 && plan == 0) {
             numTarjeta = "";
         }
         txtNumTarjeta.setText(numTarjeta);
@@ -480,10 +495,12 @@ public class Registro6Pag extends javax.swing.JPanel {
     private void txtNumTarjetaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumTarjetaFocusLost
         numTarjeta = txtNumTarjeta.getText();
         if (numTarjeta.length() == 0) {
+            txtNumTarjeta.setText("Numero de tarjeta");
+            txtNumTarjeta.setForeground(new Color(204, 204, 204));
             lblNTarjeta.setText("El numero de tarjeta es obligatorio");
-        } else {
-            verificarNumTarjetaMomento(Long.parseLong(txtNumTarjeta.getText()));
+            c = 0;
         }
+        verificarNumTarjetaMomento(Long.parseLong(txtNumTarjeta.getText()));
     }//GEN-LAST:event_txtNumTarjetaFocusLost
 
     private void txtNumTarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumTarjetaKeyReleased
@@ -505,7 +522,7 @@ public class Registro6Pag extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCodSeguridadKeyReleased
 
     private void txtCodSeguridadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodSeguridadFocusGained
-        if (d == 0) {
+        if (d == 0 && plan == 0) {
             codSeguridad = "";
         }
         txtCodSeguridad.setText(codSeguridad);
@@ -517,30 +534,28 @@ public class Registro6Pag extends javax.swing.JPanel {
         codSeguridad = txtCodSeguridad.getText();
         if (codSeguridad.length() == 0) {
             lblCodSeguridad.setText("El código de seguridad (CVV) es obligatorio.");
-        } else {
-            verificarCodSeguridadMomento(Integer.parseInt(txtCodSeguridad.getText()));
+            txtCodSeguridad.setText("Código de seguridad(CVV)");
+            txtCodSeguridad.setForeground(new Color(204, 204, 204));
+            d = 0;
         }
+        verificarCodSeguridadMomento(Integer.parseInt(txtCodSeguridad.getText()));
     }//GEN-LAST:event_txtCodSeguridadFocusLost
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         Registro2Pag pag2 = new Registro2Pag();
-        pag2.setLocation(0, 0);
-        pag2.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(pag2, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(pag2);
+        nombre = txtNombre.getText();
+        apellido = txtApellido.getText();
+        numTarjeta = txtNumTarjeta.getText();
+        codSeguridad = txtCodSeguridad.getText();
+        mes = jComboBox1.getSelectedIndex() + 1;
+        anio = jComboBox2.getSelectedIndex() + yA;
         plan = 1;
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         CerrarSesion cerr = new CerrarSesion();
-        cerr.setLocation(0, 0);
-        cerr.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(cerr, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(cerr);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

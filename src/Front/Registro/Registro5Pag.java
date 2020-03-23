@@ -1,5 +1,6 @@
 package Front.Registro;
 
+import Front.CambiarPanel;
 import java.awt.BorderLayout;
 import static Front.Netflix.panelPrincipal1;
 
@@ -91,22 +92,12 @@ public class Registro5Pag extends javax.swing.JPanel {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         Registro6Pag pag6 = new Registro6Pag();
-        pag6.setLocation(0, 0);
-        pag6.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(pag6, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(pag6);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         CerrarSesion cerr = new CerrarSesion();
-        cerr.setLocation(0, 0);
-        cerr.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(cerr, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(cerr);
     }//GEN-LAST:event_jLabel2MouseClicked
 
 

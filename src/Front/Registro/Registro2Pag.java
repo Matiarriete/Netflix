@@ -3,6 +3,7 @@ package Front.Registro;
 import java.awt.BorderLayout;
 import Back.ITipoPlanDAO;
 import Back.TipoPlanDAO;
+import Front.CambiarPanel;
 import Front.InicioSesion.InicioSesion1;
 import java.awt.event.MouseEvent;
 import static Front.Netflix.panelPrincipal1;
@@ -24,8 +25,7 @@ public class Registro2Pag extends javax.swing.JPanel {
         }
     }
 
-    static int i = 1;
-    static int cambio = 0;
+    public static int i = 1;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -228,12 +228,15 @@ public class Registro2Pag extends javax.swing.JPanel {
 
         ITipoPlanDAO tPDAO = new TipoPlanDAO();
         lblPrecio1.setText(tPDAO.conexionPrecio(1));
+        lblPrecio1.setForeground(new java.awt.Color(255, 0, 0));
         lblPrecio1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblPrecio2.setText(tPDAO.conexionPrecio(2));
+        lblPrecio2.setForeground(new java.awt.Color(255, 0, 0));
         lblPrecio2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblPrecio3.setText(tPDAO.conexionPrecio(3));
+        lblPrecio3.setForeground(new java.awt.Color(255, 0, 0));
         lblPrecio3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -351,7 +354,7 @@ public class Registro2Pag extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,33 +618,18 @@ public class Registro2Pag extends javax.swing.JPanel {
     private void panelContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelContinuarMouseClicked
         Registro6Pag pag6 = new Registro6Pag();
         if (pag6.plan == 1) {
-            cambio = 1;
-            pag6.setLocation(0, 0);
-            pag6.setSize(900,700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pag6, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            Registro6Pag.cambio = 1;
+            CambiarPanel cambiar = new CambiarPanel(pag6);
         } else {
             Registro3Pag pag3 = new Registro3Pag();
-            pag3.setLocation(0, 0);
-            pag3.setSize(900,700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pag3, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            CambiarPanel cambiar = new CambiarPanel(pag3);
         }
 
     }//GEN-LAST:event_panelContinuarMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         InicioSesion1 ini = new InicioSesion1();
-        ini.setLocation(0, 0);
-        ini.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(ini, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(ini);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

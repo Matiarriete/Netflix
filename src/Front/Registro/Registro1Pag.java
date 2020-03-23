@@ -1,5 +1,6 @@
 package Front.Registro;
 
+import Front.CambiarPanel;
 import Front.InicioSesion.InicioSesion1;
 import static Front.Netflix.panelPrincipal1;
 import java.awt.BorderLayout;
@@ -122,9 +123,6 @@ public class Registro1Pag extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +148,7 @@ public class Registro1Pag extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addComponent(jLabel5)))
                 .addGap(337, 337, 337))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,22 +178,12 @@ public class Registro1Pag extends javax.swing.JPanel {
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         Registro2Pag pag2 = new Registro2Pag();
-        pag2.setLocation(0, 0);
-            pag2.setSize(900,700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pag2, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(pag2);
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         InicioSesion1 ini = new InicioSesion1();
-        ini.setLocation(0, 0);
-            ini.setSize(900,700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(ini, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(ini);
     }//GEN-LAST:event_jLabel2MouseClicked
 
 

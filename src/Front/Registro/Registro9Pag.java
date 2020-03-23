@@ -1,30 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Front.Registro;
 
+import Back.Conexion;
 import Back.IPerfilDAO;
 import Back.IUsuarioDAO;
 import Back.PerfilDAO;
 import Back.Perfiles;
 import Back.Usuario;
 import Back.UsuarioDAO;
+import Front.CambiarPanel;
+import Front.InicioSesion.InicioSesion1;
+import static Front.InicioSesion.SeleccionPerfil.idUsuario;
+import Front.InicioSesion.SeleccionPerfil;
+import static Front.Netflix.panelPrincipal1;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
-import static Front.Netflix.panelPrincipal1;
 
-/**
- *
- * @author matia
- */
 public class Registro9Pag extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Registro9Pag
-     */
     public Registro9Pag() {
         initComponents();
     }
@@ -42,6 +35,7 @@ public class Registro9Pag extends javax.swing.JPanel {
     String text2 = "";
     String text3 = "";
     String text4 = "";
+    int id = idUsuario();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -201,7 +195,7 @@ public class Registro9Pag extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,12 +239,9 @@ public class Registro9Pag extends javax.swing.JPanel {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         CerrarSesion cerr = new CerrarSesion();
-       cerr.setLocation(0, 0);
-        cerr.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(cerr, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        InicioSesion1.o = 9;
+        CambiarPanel cambio = new CambiarPanel(cerr);
+        Conexion.cerrarConexion(Conexion.contarConexiones());
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
@@ -335,28 +326,19 @@ public class Registro9Pag extends javax.swing.JPanel {
             p5.setKids(0);
             pDao.registrarPerfil(p5);
         }
+        SeleccionPerfil perfil = new SeleccionPerfil(id);
+        CambiarPanel cambio = new CambiarPanel(perfil);
+        Conexion.cerrarConexion(Conexion.contarConexiones());
     }//GEN-LAST:event_jPanel8MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

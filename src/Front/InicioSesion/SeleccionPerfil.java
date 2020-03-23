@@ -1,5 +1,6 @@
 package Front.InicioSesion;
 
+import Back.Conexion;
 import Back.IPerfilDAO;
 import Back.IUsuarioDAO;
 import Back.Imagenes;
@@ -7,6 +8,8 @@ import Back.PerfilDAO;
 import Back.Perfiles;
 import Back.Usuario;
 import Back.UsuarioDAO;
+import Front.CambiarPanel;
+import Front.Configuracion.Configuracio;
 import Front.Registro.Registro4Pag;
 import Front.Peliculas.Peliculas1;
 import java.awt.BorderLayout;
@@ -17,14 +20,20 @@ public class SeleccionPerfil extends javax.swing.JPanel {
 
     public SeleccionPerfil(int id) {
         initComponents();
-        pintarPanel(id);
+        if (Configuracio.sel == 0) {
+            pintarPanel(id);
+        } else {
+            java.awt.event.MouseEvent evt = null;
+            administrarMouseClicked(evt);
+        }
+        Conexion.cerrarConexion(Conexion.contarConexiones());
     }
 
-    IUsuarioDAO uDao = new UsuarioDAO();
+    static IUsuarioDAO uDao = new UsuarioDAO();
     IPerfilDAO pDao = new PerfilDAO();
-    int x = 0;
+    int x = pDao.contarPerfiles(id);
     int admin = 0;
-    int id = idUsuario();
+    public static int id = idUsuario();
     int s = 0;
     public static int selPer;
     Perfiles perfiles;
@@ -210,9 +219,9 @@ public class SeleccionPerfil extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNombre5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(perfil5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(140, Short.MAX_VALUE))
+                        .addContainerGap(151, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(administrar)
                         .addContainerGap())))
         );
@@ -248,40 +257,8 @@ public class SeleccionPerfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void foto3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foto3MouseClicked
-
         if (x == 0) {
-            anadir.setSize(900, 700);
-            anadir.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(anadir, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        }
-        if (s == 1 && x != 0) {
-            switch (x) {
-                case 1:
-                    selPer = 1;
-                    break;
-                case 2:
-                    selPer = 2;
-                    break;
-                case 3:
-                    selPer = 2;
-                    break;
-                case 4:
-                    selPer = 3;
-                    break;
-                case 5:
-                    selPer = 3;
-                    break;
-            }
-            ModificarPerfil mod = new ModificarPerfil();
-            mod.setSize(900, 700);
-            mod.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(mod, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(anadir);
         } else {
             switch (x) {
                 case 1:
@@ -300,128 +277,120 @@ public class SeleccionPerfil extends javax.swing.JPanel {
                     selPer = 3;
                     break;
             }
-            Peliculas1 pel1 = new Peliculas1();
-            pel1.setLocation(0, 0);
-            pel1.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pel1, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            if (s == 1) {
+                ModificarPerfil mod = new ModificarPerfil();
+                CambiarPanel cambio = new CambiarPanel(mod);
+            } else {
+                Peliculas1 pel1 = new Peliculas1();
+                CambiarPanel cambio = new CambiarPanel(pel1);
+            }
         }
     }//GEN-LAST:event_foto3MouseClicked
 
     private void foto4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foto4MouseClicked
-        if (x == 1 || x == 2) {
-            anadir.setSize(900, 700);
-            anadir.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(anadir, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        }
-        if (s == 1 && (x != 1 && x != 2)) {
-            switch (x) {
-                case 3:
-                    selPer = 3;
-                    break;
-                case 4:
-                    selPer = 4;
-                    break;
-                case 5:
-                    selPer = 4;
-                    break;
-            }
-            ModificarPerfil mod = new ModificarPerfil();
-            mod.setLocation(0, 0);
-            mod.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(mod, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+        if (x == 0) {
         } else {
-            switch (x) {
-                case 3:
-                    selPer = 3;
-                    break;
-                case 4:
-                    selPer = 4;
-                    break;
-                case 5:
-                    selPer = 4;
-                    break;
+
+            if (x == 1 || x == 2) {
+                CambiarPanel cambio = new CambiarPanel(anadir);
+            } else {
+                switch (x) {
+                    case 3:
+                        selPer = 3;
+                        break;
+                    case 4:
+                        selPer = 4;
+                        break;
+                    case 5:
+                        selPer = 4;
+                        break;
+                }
+                if (s == 1) {
+                    ModificarPerfil mod = new ModificarPerfil();
+                    CambiarPanel cambio = new CambiarPanel(mod);
+                } else {
+                    Peliculas1 pel1 = new Peliculas1();
+                    CambiarPanel cambio = new CambiarPanel(pel1);
+                }
             }
-            Peliculas1 pel1 = new Peliculas1();
-            pel1.setLocation(0, 0);
-            pel1.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pel1, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
         }
     }//GEN-LAST:event_foto4MouseClicked
 
     private void foto5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foto5MouseClicked
-        if (x == 3 || x == 4) {
-            anadir.setSize(900, 700);
-            anadir.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(anadir, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        }
-        if (s == 1 && (x != 3 && x != 4)) {
-            if (x == 5) {
-                selPer = 5;
+        if (x != 1 && x != 2 && x != 0) {
+            if (x == 3 || x == 4) {
+                CambiarPanel cambio = new CambiarPanel(anadir);
+            } else {
+                if (x == 5) {
+                    selPer = 5;
+                }
+                if (s == 1) {
+                    ModificarPerfil mod = new ModificarPerfil();
+                    CambiarPanel cambio = new CambiarPanel(mod);
+                } else {
+                    Peliculas1 pel1 = new Peliculas1();
+                    CambiarPanel cambio = new CambiarPanel(pel1);
+                }
             }
-            ModificarPerfil mod = new ModificarPerfil();
-            mod.setLocation(0, 0);
-            mod.setSize(900, 700);
-
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(mod, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        } else {
-            if (x == 5) {
-                selPer = 5;
-            }
-            Peliculas1 pel1 = new Peliculas1();
-            pel1.setLocation(0, 0);
-            pel1.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pel1, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
         }
     }//GEN-LAST:event_foto5MouseClicked
 
     private void administrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_administrarMouseClicked
 
         if (s == 0) {
+
+            if (pDao.contarPerfiles(id) == 0) {
+                foto3.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
+                x = 0;
+            }
+
             if (x == 1) {
                 foto3.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 1).getFoto().toString() + ".png"));
+                lblNombre3.setText(pDao.obtenerPerfil(id, 1).getNombre());
+                foto4.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
             }
+
             if (x == 2) {
                 foto2.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 1).getFoto().toString() + ".png"));
+                lblNombre2.setText(pDao.obtenerPerfil(id, 1).getNombre());
                 foto3.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 2).getFoto().toString() + ".png"));
+                lblNombre3.setText(pDao.obtenerPerfil(id, 2).getNombre());
+                foto4.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
             }
+
             if (x == 3) {
                 foto2.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 1).getFoto().toString() + ".png"));
+                lblNombre2.setText(pDao.obtenerPerfil(id, 1).getNombre());
                 foto3.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 2).getFoto().toString() + ".png"));
+                lblNombre3.setText(pDao.obtenerPerfil(id, 2).getNombre());
                 foto4.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 3).getFoto().toString() + ".png"));
+                lblNombre4.setText(pDao.obtenerPerfil(id, 3).getNombre());
+                foto5.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
             }
+
             if (x == 4) {
                 foto1.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 1).getFoto().toString() + ".png"));
+                lblNombre1.setText(pDao.obtenerPerfil(id, 1).getNombre());
                 foto2.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 2).getFoto().toString() + ".png"));
+                lblNombre2.setText(pDao.obtenerPerfil(id, 2).getNombre());
                 foto3.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 3).getFoto().toString() + ".png"));
+                lblNombre3.setText(pDao.obtenerPerfil(id, 3).getNombre());
                 foto4.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 4).getFoto().toString() + ".png"));
+                lblNombre4.setText(pDao.obtenerPerfil(id, 4).getNombre());
+                foto5.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
             }
+
             if (x == 5) {
                 foto1.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 1).getFoto().toString() + ".png"));
+                lblNombre1.setText(pDao.obtenerPerfil(id, 1).getNombre());
                 foto2.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 2).getFoto().toString() + ".png"));
+                lblNombre2.setText(pDao.obtenerPerfil(id, 2).getNombre());
                 foto3.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 3).getFoto().toString() + ".png"));
+                lblNombre3.setText(pDao.obtenerPerfil(id, 3).getNombre());
                 foto4.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 4).getFoto().toString() + ".png"));
+                lblNombre4.setText(pDao.obtenerPerfil(id, 4).getNombre());
                 foto5.setIcon(new ImageIcon(Imagenes.admin + "//" + pDao.obtenerPerfil(id, 5).getFoto().toString() + ".png"));
+                lblNombre5.setText(pDao.obtenerPerfil(id, 5).getNombre());
             }
             s = 1;
             administrar.setIcon(new ImageIcon(Imagenes.general + "//ListoAdmin.png"));
@@ -433,7 +402,7 @@ public class SeleccionPerfil extends javax.swing.JPanel {
     }//GEN-LAST:event_administrarMouseClicked
 
     private void foto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foto1MouseClicked
-        if (s == 1) {
+        if (x == 4 || x == 5) {
             switch (x) {
                 case 4:
                     selPer = 1;
@@ -442,34 +411,18 @@ public class SeleccionPerfil extends javax.swing.JPanel {
                     selPer = 1;
                     break;
             }
-            ModificarPerfil mod = new ModificarPerfil();
-            mod.setLocation(0, 0);
-            mod.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(mod, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        } else {
-            switch (x) {
-                case 4:
-                    selPer = 1;
-                    break;
-                case 5:
-                    selPer = 1;
-                    break;
+            if (s == 1) {
+                ModificarPerfil mod = new ModificarPerfil();
+                CambiarPanel cambio = new CambiarPanel(mod);
+            } else {
+                Peliculas1 pel1 = new Peliculas1();
+                CambiarPanel cambio = new CambiarPanel(pel1);
             }
-            Peliculas1 pel1 = new Peliculas1();
-            pel1.setLocation(0, 0);
-            pel1.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pel1, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
         }
     }//GEN-LAST:event_foto1MouseClicked
 
     private void foto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foto2MouseClicked
-        if (s == 1) {
+        if (x != 1 && x != 0) {
             switch (x) {
                 case 2:
                     selPer = 1;
@@ -484,37 +437,13 @@ public class SeleccionPerfil extends javax.swing.JPanel {
                     selPer = 2;
                     break;
             }
-            ModificarPerfil mod = new ModificarPerfil();
-            mod.setLocation(0, 0);
-            mod.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(mod, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-        } else {
-            switch (x) {
-                case 2:
-                    selPer = 1;
-                    break;
-                case 3:
-                    selPer = 1;
-                    break;
-                case 4:
-                    selPer = 2;
-                    break;
-                case 5:
-                    selPer = 2;
-                    break;
+            if (s == 1) {
+                ModificarPerfil mod = new ModificarPerfil();
+                CambiarPanel cambio = new CambiarPanel(mod);
+            } else {
+                Peliculas1 pel1 = new Peliculas1();
+                CambiarPanel cambio = new CambiarPanel(pel1);
             }
-
-            Peliculas1 pel1 = new Peliculas1();
-            pel1.setLocation(0, 0);
-            pel1.setSize(900, 700);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(pel1, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
-
         }
     }//GEN-LAST:event_foto2MouseClicked
 
@@ -522,6 +451,7 @@ public class SeleccionPerfil extends javax.swing.JPanel {
 
         uDao = new UsuarioDAO();
         pDao = new PerfilDAO();
+
         if (pDao.contarPerfiles(id) == 0) {
             foto3.setIcon(new ImageIcon(Imagenes.general + "//Agregar.png"));
             x = 0;
@@ -582,7 +512,7 @@ public class SeleccionPerfil extends javax.swing.JPanel {
         }
     }
 
-    public int idUsuario() {
+    public static int idUsuario() {
         if (InicioSesion1.id == 0) {
             Usuario user = new Usuario();
             user.setMail(Registro4Pag.mail);

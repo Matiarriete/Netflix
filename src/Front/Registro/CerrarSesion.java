@@ -5,6 +5,7 @@
  */
 package Front.Registro;
 
+import Front.CambiarPanel;
 import Front.InicioSesion.InicioSesion1;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,7 @@ public class CerrarSesion extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 0, 0));
         setLayout(null);
 
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,14 +59,7 @@ public class CerrarSesion extends javax.swing.JPanel {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         InicioSesion1 ini = new InicioSesion1();
-        ini.setLocation(0, 0);
-        ini.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(ini, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
-        Registro4Pag.contrasena = "";
-        Registro4Pag.mail = "";
+        CambiarPanel cambio = new CambiarPanel(ini);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

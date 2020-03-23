@@ -5,6 +5,7 @@ import Back.PerfilDAO;
 import Back.Perfiles;
 import Back.Usuario;
 import Back.UsuarioDAO;
+import Front.CambiarPanel;
 import static Front.InicioSesion.InicioSesion1.id;
 import Front.Registro.Registro4Pag;
 import java.awt.BorderLayout;
@@ -29,224 +30,219 @@ public class AnadirPerfil extends javax.swing.JPanel {
     private void initComponents() {
 
         jSpinner1 = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblVolver = new javax.swing.JLabel();
+        lblAgregarPerfil = new javax.swing.JLabel();
+        lblModFoto = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
         switch2 = new Externas.Switch();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblKids = new javax.swing.JLabel();
+        pnlFotos = new javax.swing.JPanel();
+        lblfoto1 = new javax.swing.JLabel();
+        lblfoto3 = new javax.swing.JLabel();
+        lblfoto2 = new javax.swing.JLabel();
+        lblfoto4 = new javax.swing.JLabel();
+        lblfoto5 = new javax.swing.JLabel();
+        lblfoto6 = new javax.swing.JLabel();
+        lblfoto7 = new javax.swing.JLabel();
+        lblfoto8 = new javax.swing.JLabel();
+        lblfoto9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(Imagenes.general + "\\FlechaVolver.png"));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblVolver.setIcon(new javax.swing.ImageIcon(Imagenes.general + "\\FlechaVolver.png"));
+        lblVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lblVolverMouseClicked(evt);
             }
         });
-        add(jLabel1);
-        jLabel1.setBounds(10, 11, 35, 35);
+        add(lblVolver);
+        lblVolver.setBounds(10, 11, 35, 35);
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Agregar Perfil");
-        add(jLabel2);
-        jLabel2.setBounds(85, 11, 127, 35);
+        lblAgregarPerfil.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        lblAgregarPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        lblAgregarPerfil.setText("Agregar Perfil");
+        add(lblAgregarPerfil);
+        lblAgregarPerfil.setBounds(85, 11, 127, 35);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\lapizEdic.png")); // NOI18N
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblModFoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\lapizEdic.png")); // NOI18N
+        lblModFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                lblModFotoMouseClicked(evt);
             }
         });
-        add(jLabel6);
-        jLabel6.setBounds(280, 334, 30, 30);
+        add(lblModFoto);
+        lblModFoto.setBounds(280, 334, 30, 30);
 
-        jLabel3.setIcon(new ImageIcon(Imagenes.general + "//btnGuardarPerfil.png"));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblGuardar.setIcon(new ImageIcon(Imagenes.general + "//btnGuardarPerfil.png"));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                lblGuardarMouseClicked(evt);
             }
         });
-        add(jLabel3);
-        jLabel3.setBounds(740, 11, 150, 35);
+        add(lblGuardar);
+        lblGuardar.setBounds(740, 11, 150, 35);
 
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "//1.png"));
-        add(jLabel4);
-        jLabel4.setBounds(273, 267, 100, 100);
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "//1.png"));
+        add(lblFoto);
+        lblFoto.setBounds(273, 267, 100, 100);
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Nombre");
-        jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0));
+        txtNombre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setText("Nombre");
+        txtNombre.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                txtNombreFocusGained(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtNombreKeyReleased(evt);
             }
         });
-        add(jTextField1);
-        jTextField1.setBounds(391, 308, 216, 29);
+        add(txtNombre);
+        txtNombre.setBounds(391, 308, 216, 29);
 
         switch2.setBackgroundColor(new java.awt.Color(153, 153, 153));
         switch2.setButtonColor(new java.awt.Color(0, 0, 0));
         add(switch2);
         switch2.setBounds(391, 343, 33, 24);
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("¿Kids?");
-        add(jLabel5);
-        jLabel5.setBounds(428, 343, 53, 24);
+        lblKids.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        lblKids.setForeground(new java.awt.Color(255, 255, 255));
+        lblKids.setText("¿Kids?");
+        add(lblKids);
+        lblKids.setBounds(428, 343, 53, 24);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.setVisible(false);
+        pnlFotos.setBackground(new java.awt.Color(0, 0, 0));
+        pnlFotos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        pnlFotos.setVisible(false);
 
-        jLabel7.setIcon(new ImageIcon(Imagenes.reducido + "//1.png"));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto1.setIcon(new ImageIcon(Imagenes.reducido + "//1.png"));
+        lblfoto1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                lblfoto1MouseClicked(evt);
             }
         });
 
-        jLabel8.setIcon(new ImageIcon(Imagenes.reducido + "//3.png"));
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto3.setIcon(new ImageIcon(Imagenes.reducido + "//3.png"));
+        lblfoto3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                lblfoto3MouseClicked(evt);
             }
         });
 
-        jLabel9.setIcon(new ImageIcon(Imagenes.reducido + "//2.png"));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto2.setIcon(new ImageIcon(Imagenes.reducido + "//2.png"));
+        lblfoto2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                lblfoto2MouseClicked(evt);
             }
         });
 
-        jLabel10.setIcon(new ImageIcon(Imagenes.reducido + "//4.png"));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto4.setIcon(new ImageIcon(Imagenes.reducido + "//4.png"));
+        lblfoto4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                lblfoto4MouseClicked(evt);
             }
         });
 
-        jLabel11.setIcon(new ImageIcon(Imagenes.reducido + "//5.png"));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto5.setIcon(new ImageIcon(Imagenes.reducido + "//5.png"));
+        lblfoto5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                lblfoto5MouseClicked(evt);
             }
         });
 
-        jLabel12.setIcon(new ImageIcon(Imagenes.reducido + "//6.png"));
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto6.setIcon(new ImageIcon(Imagenes.reducido + "//6.png"));
+        lblfoto6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+                lblfoto6MouseClicked(evt);
             }
         });
 
-        jLabel13.setIcon(new ImageIcon(Imagenes.reducido + "//7.png"));
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto7.setIcon(new ImageIcon(Imagenes.reducido + "//7.png"));
+        lblfoto7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                lblfoto7MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new ImageIcon(Imagenes.reducido + "//8.png"));
-        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto8.setIcon(new ImageIcon(Imagenes.reducido + "//8.png"));
+        lblfoto8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel14MouseClicked(evt);
+                lblfoto8MouseClicked(evt);
             }
         });
 
-        jLabel15.setIcon(new ImageIcon(Imagenes.reducido + "//9.png"));
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfoto9.setIcon(new ImageIcon(Imagenes.reducido + "//9.png"));
+        lblfoto9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
+                lblfoto9MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFotosLayout = new javax.swing.GroupLayout(pnlFotos);
+        pnlFotos.setLayout(pnlFotosLayout);
+        pnlFotosLayout.setHorizontalGroup(
+            pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFotosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFotosLayout.createSequentialGroup()
+                        .addComponent(lblfoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblfoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblfoto3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlFotosLayout.createSequentialGroup()
+                        .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblfoto4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblfoto7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                        .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblfoto8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblfoto5, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblfoto6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblfoto9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlFotosLayout.setVerticalGroup(
+            pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFotosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblfoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblfoto4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblfoto7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblfoto8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        add(jPanel1);
-        jPanel1.setBounds(280, 370, 290, 270);
+        add(pnlFotos);
+        pnlFotos.setBounds(280, 370, 290, 270);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lblVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVolverMouseClicked
         SeleccionPerfil perfil = new SeleccionPerfil(InicioSesion1.id);
-        perfil.setSize(900, 700);
-        perfil.setLocation(0, 0);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(perfil, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
-    }//GEN-LAST:event_jLabel1MouseClicked
+        CambiarPanel cambio = new CambiarPanel(perfil);
+    }//GEN-LAST:event_lblVolverMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
         p1.setNombre(nombre);
         if (j == 0) {
             p1.setFoto(1);
@@ -263,117 +259,112 @@ public class AnadirPerfil extends javax.swing.JPanel {
         p1.setIdUsuario(id);
         if (pDao.registrarPerfil(p1)) {
             SeleccionPerfil perfil = new SeleccionPerfil(id);
-            perfil.setSize(900, 700);
-            perfil.setLocation(0, 0);
-            panelPrincipal1.removeAll();
-            panelPrincipal1.add(perfil, BorderLayout.CENTER);
-            panelPrincipal1.revalidate();
-            panelPrincipal1.repaint();
+            CambiarPanel cambio = new CambiarPanel(perfil);
         }
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_lblGuardarMouseClicked
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void lblModFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblModFotoMouseClicked
         if (i == 0) {
-            jPanel1.setVisible(true);
+            pnlFotos.setVisible(true);
             i = 1;
         } else {
-            jPanel1.setVisible(false);
+            pnlFotos.setVisible(false);
             i = 0;
         }
 
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_lblModFotoMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\1.png"));
+    private void lblfoto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto1MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\1.png"));
         j = 1;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel7MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto1MouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\2.png"));
+    private void lblfoto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto2MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\2.png"));
         j = 2;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel9MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto2MouseClicked
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\3.png"));
+    private void lblfoto3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto3MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\3.png"));
         j = 3;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel8MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto3MouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\4.png"));
+    private void lblfoto4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto4MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\4.png"));
         j = 4;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel10MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto4MouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\5.png"));
+    private void lblfoto5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto5MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\5.png"));
         j = 5;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel11MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto5MouseClicked
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\6.png"));
+    private void lblfoto6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto6MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\6.png"));
         j = 6;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel12MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto6MouseClicked
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\7.png"));
+    private void lblfoto7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto7MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\7.png"));
         j = 7;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel13MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto7MouseClicked
 
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\8.png"));
+    private void lblfoto8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto8MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\8.png"));
         j = 8;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel14MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto8MouseClicked
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        jLabel4.setIcon(new ImageIcon(Imagenes.perfiles + "\\9.png"));
+    private void lblfoto9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfoto9MouseClicked
+        lblFoto.setIcon(new ImageIcon(Imagenes.perfiles + "\\9.png"));
         j = 9;
         i = 0;
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_jLabel15MouseClicked
+        pnlFotos.setVisible(false);
+    }//GEN-LAST:event_lblfoto9MouseClicked
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        jTextField1.setText(nombre);
-    }//GEN-LAST:event_jTextField1FocusGained
+    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
+        txtNombre.setText(nombre);
+    }//GEN-LAST:event_txtNombreFocusGained
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        nombre = jTextField1.getText();
-    }//GEN-LAST:event_jTextField1KeyReleased
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        nombre = txtNombre.getText();
+    }//GEN-LAST:event_txtNombreKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAgregarPerfil;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblGuardar;
+    private javax.swing.JLabel lblKids;
+    private javax.swing.JLabel lblModFoto;
+    private javax.swing.JLabel lblVolver;
+    private javax.swing.JLabel lblfoto1;
+    private javax.swing.JLabel lblfoto2;
+    private javax.swing.JLabel lblfoto3;
+    private javax.swing.JLabel lblfoto4;
+    private javax.swing.JLabel lblfoto5;
+    private javax.swing.JLabel lblfoto6;
+    private javax.swing.JLabel lblfoto7;
+    private javax.swing.JLabel lblfoto8;
+    private javax.swing.JLabel lblfoto9;
+    private javax.swing.JPanel pnlFotos;
     private Externas.Switch switch2;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

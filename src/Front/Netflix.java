@@ -1,20 +1,20 @@
 package Front;
 
+import Back.IUsuarioDAO;
+import Back.UsuarioDAO;
 import Front.InicioSesion.InicioSesion1;
+import Front.InicioSesion.SeleccionPerfil;
 import java.awt.BorderLayout;
 
 public class Netflix extends javax.swing.JFrame {
 
     public Netflix() {
+
         initComponents();
         InicioSesion1 ini = new InicioSesion1();
-        ini.setSize(900, 700);
-        ini.setLocation(0, 0);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(ini, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(ini);
     }
+    IUsuarioDAO uDao = new UsuarioDAO();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -29,7 +29,7 @@ public class Netflix extends javax.swing.JFrame {
         panelPrincipal1.setLayout(panelPrincipal1Layout);
         panelPrincipal1Layout.setHorizontalGroup(
             panelPrincipal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 911, Short.MAX_VALUE)
         );
         panelPrincipal1Layout.setVerticalGroup(
             panelPrincipal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -54,8 +54,9 @@ public class Netflix extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Netflix().setVisible(true);
-
+                Netflix net = new Netflix();
+                net.setLocationRelativeTo(null);
+                net.setVisible(true);
             }
         });
     }

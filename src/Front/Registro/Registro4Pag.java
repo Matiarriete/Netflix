@@ -3,6 +3,7 @@ package Front.Registro;
 import Back.IUsuarioDAO;
 import Back.Usuario;
 import Back.UsuarioDAO;
+import Front.CambiarPanel;
 import Front.InicioSesion.InicioSesion1;
 import Front.InicioSesion.SeleccionPerfil;
 import java.awt.BorderLayout;
@@ -181,7 +182,7 @@ public class Registro4Pag extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,23 +263,13 @@ public class Registro4Pag extends javax.swing.JPanel {
         if (uDao.verificarMail(jTextField1.getText()) && uDao.verificarContrasena(jPasswordField1.getText())) {
             if (uDao.mailDisponible(jTextField1.getText())) {
                 Registro5Pag pag5 = new Registro5Pag();
-                pag5.setLocation(0, 0);
-                pag5.setSize(900,700);
-                panelPrincipal1.removeAll();
-                panelPrincipal1.add(pag5, BorderLayout.CENTER);
-                panelPrincipal1.revalidate();
-                panelPrincipal1.repaint();
+                CambiarPanel cambio = new CambiarPanel(pag5);
             } else {
                 user.setContrasena(jPasswordField1.getText());
                 user.setMail(jTextField1.getText());
                 if (uDao.inicioSesion(user)) {
                     SeleccionPerfil perfil = new SeleccionPerfil(uDao.obtenerId(user));
-                    perfil.setLocation(0, 0);
-                    perfil.setSize(900,700);
-                    panelPrincipal1.removeAll();
-                    panelPrincipal1.add(perfil, BorderLayout.CENTER);
-                    panelPrincipal1.revalidate();
-                    panelPrincipal1.repaint();
+                    CambiarPanel cambio = new CambiarPanel(perfil);
                 } else {
                     lblContrasena.setText("Usuario incorrecto. Verfique sus datos");
                 }
@@ -304,12 +295,9 @@ public class Registro4Pag extends javax.swing.JPanel {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         InicioSesion1 ini = new InicioSesion1();
-        ini.setLocation(0, 0);
-        ini.setSize(900,700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(ini, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        CambiarPanel cambio = new CambiarPanel(ini);
+        mail = "";
+        contrasena = "";
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void verificarMailEnMomento(String mail) {

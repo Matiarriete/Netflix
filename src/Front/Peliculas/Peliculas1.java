@@ -1,57 +1,69 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Front.Peliculas;
 
+import Back.Conexion;
+import Back.IPeliculasDAO;
+import Back.ITarjetaDAO;
+import Back.ITipoPlanDAO;
 import Back.IUsuarioDAO;
 import Back.Imagenes;
+import Back.PeliculaDAO;
+import Back.Peliculas;
 import Back.PerfilDAO;
 import Back.Perfiles;
+import Back.Tarjeta;
+import Back.TarjetaDAO;
+import Back.TipoPlanDAO;
 import Back.Usuario;
 import Back.UsuarioDAO;
-import static Back.UsuarioDAO.id;
-import Front.InicioSesion.InicioSesion1;
+import Front.CambiarPanel;
+import Front.Configuracion.Configuracio;
 import Front.InicioSesion.ModificarPerfil;
 import Front.InicioSesion.SeleccionPerfil;
-import static Front.Netflix.panelPrincipal1;
 import Front.Registro.CerrarSesion;
-import Front.Registro.Registro4Pag;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import javax.swing.ScrollPaneConstants;
 
-/**
- *
- * @author matia
- */
 public class Peliculas1 extends javax.swing.JPanel {
 
     public Peliculas1() {
         initComponents();
-
     }
 
     ModificarPerfil mod;
-
+//Daos
+    IUsuarioDAO uDao = new UsuarioDAO();
+    ITarjetaDAO tDao = new TarjetaDAO();
+    ITipoPlanDAO tPlan = new TipoPlanDAO();
+    PerfilDAO pDao = new PerfilDAO();
+    IPeliculasDAO peliDao = new PeliculaDAO();
+//Variables    
     int j = 0;
+    public static int z = 1;
     int cerr = 0;
     int menPeli = 0;
-    int id = idUsuario();
+    public static String buscar = "";
+    static int id = SeleccionPerfil.idUsuario();
     int selPer = SeleccionPerfil.selPer;
-    PerfilDAO pDao = new PerfilDAO();
+    
+//Clases  
     Perfiles perfil = pDao.obtenerPerfil(id, selPer);
+    Peliculas peli = PanelModificable.peli;
+    CambiarPanel cambiarPanel;
+    PeliculasCategoria peliCat;
+    MostrarPeliculasTodas mostrar = new MostrarPeliculasTodas();
+    Usuario user = new Usuario();
+    Tarjeta tar = new Tarjeta();
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlMuestraPeli = new javax.swing.JPanel();
+        jScrollPaneChico = new javax.swing.JScrollPane();
         pnlSuperior = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblBusqueda = new javax.swing.JLabel();
+        lblBusqueda2 = new javax.swing.JLabel();
+        txtBusqueda = new javax.swing.JTextField();
         lblMenuPel = new javax.swing.JLabel();
         lblMenuCerr = new javax.swing.JLabel();
         pnlCerrar = new javax.swing.JPanel();
@@ -76,37 +88,59 @@ public class Peliculas1 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
 
         setBackground(new java.awt.Color(0, 0, 0));
+        setMinimumSize(new java.awt.Dimension(900, 700));
         setPreferredSize(new java.awt.Dimension(900, 2100));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlMuestraPeli.setVisible(false);
+        pnlMuestraPeli.setBackground(new java.awt.Color(255, 51, 51));
+
+        javax.swing.GroupLayout pnlMuestraPeliLayout = new javax.swing.GroupLayout(pnlMuestraPeli);
+        pnlMuestraPeli.setLayout(pnlMuestraPeliLayout);
+        pnlMuestraPeliLayout.setHorizontalGroup(
+            pnlMuestraPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneChico, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+        );
+        pnlMuestraPeliLayout.setVerticalGroup(
+            pnlMuestraPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneChico, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+        );
+
+        add(pnlMuestraPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 470, 650));
 
         pnlSuperior.setBackground(new java.awt.Color(0, 0, 0));
         pnlSuperior.setLayout(null);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_lupa.png")); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblBusqueda.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_lupa.png")); // NOI18N
+        lblBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lblBusquedaMouseClicked(evt);
             }
         });
-        pnlSuperior.add(jLabel2);
-        jLabel2.setBounds(789, 11, 30, 30);
+        pnlSuperior.add(lblBusqueda);
+        lblBusqueda.setBounds(789, 11, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_lupa.png")); // NOI18N
-        jLabel1.setVisible(false);
-        pnlSuperior.add(jLabel1);
-        jLabel1.setBounds(234, 11, 30, 30);
+        lblBusqueda2.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_lupa.png")); // NOI18N
+        lblBusqueda2.setVisible(false);
+        pnlSuperior.add(lblBusqueda2);
+        lblBusqueda2.setBounds(234, 11, 30, 30);
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Buscar");
-        jTextField1.setVisible(false);
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtBusqueda.setBackground(new java.awt.Color(0, 0, 0));
+        txtBusqueda.setForeground(new java.awt.Color(255, 255, 255));
+        txtBusqueda.setText("Buscar");
+        txtBusqueda.setVisible(false);
+        txtBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                txtBusquedaFocusGained(evt);
             }
         });
-        pnlSuperior.add(jTextField1);
-        jTextField1.setBounds(274, 11, 300, 30);
+        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaKeyReleased(evt);
+            }
+        });
+        pnlSuperior.add(txtBusqueda);
+        txtBusqueda.setBounds(274, 11, 300, 30);
 
         lblMenuPel.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\miniMenuIni.png")); // NOI18N
         lblMenuPel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,6 +167,11 @@ public class Peliculas1 extends javax.swing.JPanel {
         lblConfig.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblConfig.setForeground(new java.awt.Color(255, 255, 255));
         lblConfig.setText("Configuracion");
+        lblConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblConfigMouseClicked(evt);
+            }
+        });
 
         lblCerrar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblCerrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,50 +218,110 @@ public class Peliculas1 extends javax.swing.JPanel {
         lblDescargas.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_descargas.png")); // NOI18N
         lblDescargas.setText("Mis descargas");
         lblDescargas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(71, 71, 71), 3));
+        lblDescargas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDescargasMouseClicked(evt);
+            }
+        });
 
         lblAccion.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblAccion.setForeground(new java.awt.Color(255, 255, 255));
         lblAccion.setText("Accion");
+        lblAccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAccionMouseClicked(evt);
+            }
+        });
 
         lblAventura.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblAventura.setForeground(new java.awt.Color(255, 255, 255));
         lblAventura.setText("Aventura");
+        lblAventura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAventuraMouseClicked(evt);
+            }
+        });
 
         lblTerror.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblTerror.setForeground(new java.awt.Color(255, 255, 255));
         lblTerror.setText("Terror");
+        lblTerror.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTerrorMouseClicked(evt);
+            }
+        });
 
         lblInfantil.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblInfantil.setForeground(new java.awt.Color(255, 255, 255));
         lblInfantil.setText("Infantiles");
+        lblInfantil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInfantilMouseClicked(evt);
+            }
+        });
 
         lblSuspenso.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblSuspenso.setForeground(new java.awt.Color(255, 255, 255));
         lblSuspenso.setText("Suspenso");
+        lblSuspenso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSuspensoMouseClicked(evt);
+            }
+        });
 
         lblCienFicc.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblCienFicc.setForeground(new java.awt.Color(255, 255, 255));
         lblCienFicc.setText("Ciencia Ficcion");
+        lblCienFicc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCienFiccMouseClicked(evt);
+            }
+        });
 
         lblDrama.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblDrama.setForeground(new java.awt.Color(255, 255, 255));
         lblDrama.setText("Drama");
+        lblDrama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDramaMouseClicked(evt);
+            }
+        });
 
         lblDeport.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblDeport.setForeground(new java.awt.Color(255, 255, 255));
         lblDeport.setText("Deportes");
+        lblDeport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDeportMouseClicked(evt);
+            }
+        });
 
         lblLatin.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblLatin.setForeground(new java.awt.Color(255, 255, 255));
         lblLatin.setText("Latinoamericanas");
+        lblLatin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLatinMouseClicked(evt);
+            }
+        });
 
         lblDocum.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblDocum.setForeground(new java.awt.Color(255, 255, 255));
         lblDocum.setText("Documentales");
+        lblDocum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDocumMouseClicked(evt);
+            }
+        });
 
         lblMusic.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblMusic.setForeground(new java.awt.Color(255, 255, 255));
         lblMusic.setText("Musicales");
+        lblMusic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMusicMouseClicked(evt);
+            }
+        });
 
         lblCambio.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\flechaCambioUser.png")); // NOI18N
         lblCambio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,7 +367,7 @@ public class Peliculas1 extends javax.swing.JPanel {
             .addGroup(pnlPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlPeliLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(lblInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         pnlPeliLayout.setVerticalGroup(
@@ -315,119 +414,184 @@ public class Peliculas1 extends javax.swing.JPanel {
         add(pnlPeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(-230, 50, 230, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
-        MostrarPeliculasTodas mostrar = new MostrarPeliculasTodas();
         jScrollPane1.setViewportView(mostrar);
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 900, 650));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 910, 650));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        if (j == 0 && menPeli == 0) {
-            jLabel1.setVisible(true);
-            jTextField1.setVisible(true);
-            jLabel2.setVisible(false);
-            lblMenuCerr.setVisible(false);
+    private void lblBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBusquedaMouseClicked
+        if (z == 1) {
+            if (j == 0 && menPeli == 0) {
+                lblBusqueda2.setVisible(true);
+                txtBusqueda.setVisible(true);
+                lblBusqueda.setVisible(false);
+                lblMenuCerr.setVisible(false);
+                PeliculaBuscar peliculaBuscar = new PeliculaBuscar();
+                jScrollPane1.setViewportView(peliculaBuscar);
+                Conexion.cerrarConexion(Conexion.contarConexiones());
 
-            if (cerr == 1) {
-                lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_menu3Puntos(1).png"));
-                Animacion.Animacion.subir(50, -82, 2, 2, pnlCerrar);
-                cerr = 0;
+                if (cerr == 1) {
+                    lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_menu3Puntos(1).png"));
+                    Animacion.Animacion.subir(50, -82, 2, 2, pnlCerrar);
+                    cerr = 0;
+                }
+                lblMenuPel.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\FlechaVolver.png"));
+                j = 1;
             }
-            lblMenuPel.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\FlechaVolver.png"));
-            j = 1;
-        }
-        if (menPeli == 1) {
-        }//Solo para que no el boton de la lupa no haga nada mientras el menu esta abierto
-    }//GEN-LAST:event_jLabel2MouseClicked
+            if (menPeli == 1) {
+            }//Solo para que no el boton de la lupa no haga nada mientras el menu esta abierto
+        }//Para que no se oprima el boton una vez que esta abiera la vista de la pelicula
+    }//GEN-LAST:event_lblBusquedaMouseClicked
 
     private void lblMenuPelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuPelMouseClicked
-        if (j == 1) {
-            jLabel1.setVisible(false);
-            jTextField1.setVisible(false);
-            lblMenuPel.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\miniMenuIni.png"));
-            jLabel2.setVisible(true);
-            lblMenuCerr.setVisible(true);
-            j = 0;
-        } else {
-            int posicion = pnlPeli.getX();
-            if (posicion >= 0) {
-                Animacion.Animacion.mover_izquierda(0, -230, 2, 2, pnlPeli);
-                menPeli = 0;
+        if (z == 1) {
+            if (j == 1) {
+                lblBusqueda2.setVisible(false);
+                txtBusqueda.setVisible(false);
+                lblMenuPel.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\miniMenuIni.png"));
+                lblBusqueda.setVisible(true);
+                lblMenuCerr.setVisible(true);
+                jScrollPane1.setViewportView(mostrar);
+                j = 0;
             } else {
-                Animacion.Animacion.mover_derecha(-230, 0, 2, 2, pnlPeli);
-                menPeli = 1;
-            }
+                int posicion = pnlPeli.getX();
+                if (posicion >= 0) {
+                    Animacion.Animacion.mover_izquierda(0, -230, 2, 2, pnlPeli);
+                    menPeli = 0;
+                } else {
+                    Animacion.Animacion.mover_derecha(-230, 0, 2, 2, pnlPeli);
+                    menPeli = 1;
+                }
 
-        }
+            }
+        }//Para que no se oprima el boton una vez que esta abiera la vista de la pelicula
+
     }//GEN-LAST:event_lblMenuPelMouseClicked
 
     private void lblMenuCerrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuCerrMouseClicked
-        int a = 0;
-        if (cerr == 0 && menPeli == 0) {
-            lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_mini_mini_menu3Puntos.png"));
-            Animacion.Animacion.bajar(-32, 50, 2, 2, pnlCerrar);
-            a = 1;
-        }
-        if (cerr == 1 && menPeli == 0) {
-            lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_menu3Puntos(1).png"));
-            Animacion.Animacion.subir(50, -82, 2, 2, pnlCerrar);
-            a = 0;
-        }
-        cerr = a;//Se hace para que el valor de cerr se guarde una vez pasado los dos if.
-        if (menPeli == 1) {
-        }//Solo para que no el boton de la lupa no haga nada mientras el menu esta abierto.
+        if (z == 1) {
+            int a = 0;
+            if (cerr == 0 && menPeli == 0) {
+                lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_mini_mini_menu3Puntos.png"));
+                Animacion.Animacion.bajar(-32, 50, 2, 2, pnlCerrar);
+                a = 1;
+            }
+            if (cerr == 1 && menPeli == 0) {
+                lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_menu3Puntos(1).png"));
+                Animacion.Animacion.subir(50, -82, 2, 2, pnlCerrar);
+                a = 0;
+            }
+            cerr = a;//Se hace para que el valor de cerr se guarde una vez pasado los dos if.
+            if (menPeli == 1) {
+            }//Solo para que no el boton de la lupa no haga nada mientras el menu esta abierto.
+        }//Para que no se oprima el boton una vez que esta abiera la vista de la pelicula
+
     }//GEN-LAST:event_lblMenuCerrMouseClicked
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1FocusGained
+    private void txtBusquedaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBusquedaFocusGained
+        txtBusqueda.setText(buscar);
+    }//GEN-LAST:event_txtBusquedaFocusGained
 
     private void lblCambioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambioMouseClicked
         SeleccionPerfil selec = new SeleccionPerfil(id);
-        selec.setSize(900, 700);
-        selec.setLocation(0, 0);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(selec, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        cambiarPanel = new CambiarPanel(selec);
     }//GEN-LAST:event_lblCambioMouseClicked
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         CerrarSesion cerr = new CerrarSesion();
-        cerr.setLocation(0, 0);
-        cerr.setSize(900, 700);
-        panelPrincipal1.removeAll();
-        panelPrincipal1.add(cerr, BorderLayout.CENTER);
-        panelPrincipal1.revalidate();
-        panelPrincipal1.repaint();
+        cambiarPanel = new CambiarPanel(cerr);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInicioMouseClicked
-        MostrarPeliculasTodas mostrar = new MostrarPeliculasTodas();
+        mostrar = new MostrarPeliculasTodas();
         jScrollPane1.setViewportView(mostrar);
         Animacion.Animacion.mover_izquierda(0, -230, 2, 2, pnlPeli);
         menPeli = 0;
+        Conexion.cerrarConexion(Conexion.contarConexiones());
     }//GEN-LAST:event_lblInicioMouseClicked
 
-    public int idUsuario() {
-        IUsuarioDAO uDao = new UsuarioDAO();
-        if (InicioSesion1.id == 0) {
-            Usuario user = new Usuario();
-            user.setMail(Registro4Pag.mail);
-            user.setContrasena(Registro4Pag.contrasena);
-            id = uDao.obtenerId(user);
-        } else {
-            id = InicioSesion1.id;
-        }
-        return id;
+    private void lblAccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccionMouseClicked
+        seleccionCat("Accion");
+    }//GEN-LAST:event_lblAccionMouseClicked
+
+    private void lblMusicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMusicMouseClicked
+        seleccionCat("Musical");
+    }//GEN-LAST:event_lblMusicMouseClicked
+
+    private void lblDocumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDocumMouseClicked
+        seleccionCat("Documental");
+    }//GEN-LAST:event_lblDocumMouseClicked
+
+    private void lblAventuraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAventuraMouseClicked
+        seleccionCat("Aventura");
+    }//GEN-LAST:event_lblAventuraMouseClicked
+
+    private void lblTerrorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTerrorMouseClicked
+        seleccionCat("Terror");
+    }//GEN-LAST:event_lblTerrorMouseClicked
+
+    private void lblInfantilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInfantilMouseClicked
+        seleccionCat("Infantil");
+    }//GEN-LAST:event_lblInfantilMouseClicked
+
+    private void lblSuspensoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSuspensoMouseClicked
+        seleccionCat("Suspenso");
+    }//GEN-LAST:event_lblSuspensoMouseClicked
+
+    private void lblCienFiccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCienFiccMouseClicked
+        seleccionCat("Ciencia Ficcion");
+    }//GEN-LAST:event_lblCienFiccMouseClicked
+
+    private void lblDramaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDramaMouseClicked
+        seleccionCat("Drama");
+    }//GEN-LAST:event_lblDramaMouseClicked
+
+    private void lblDeportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeportMouseClicked
+        seleccionCat("Deporte");
+    }//GEN-LAST:event_lblDeportMouseClicked
+
+    private void lblLatinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLatinMouseClicked
+        seleccionCat("Latin");
+    }//GEN-LAST:event_lblLatinMouseClicked
+
+    private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
+        buscar = txtBusqueda.getText();
+        PeliculaBuscar peliBuscar = new PeliculaBuscar();
+        jScrollPane1.setViewportView(peliBuscar);
+        Conexion.cerrarConexion(Conexion.contarConexiones());
+
+    }//GEN-LAST:event_txtBusquedaKeyReleased
+
+    private void lblDescargasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDescargasMouseClicked
+        seleccionCat("Descargas");
+    }//GEN-LAST:event_lblDescargasMouseClicked
+
+    private void lblConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfigMouseClicked
+        lblMenuCerr.setIcon(new javax.swing.ImageIcon("C:\\Users\\matia\\Desktop\\Imagenes Trabajo\\Trabajo Netflix\\mini_menu3Puntos(1).png"));
+        Animacion.Animacion.subir(50, -82, 2, 2, pnlCerrar);
+        cerr = 0;
+        Configuracio conf = new Configuracio();
+        jScrollPaneChico.setViewportView(conf);
+        pnlMuestraPeli.setVisible(true);
+        jScrollPane1.setEnabled(false);
+        jScrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        Peliculas1.z = 0;
+    }//GEN-LAST:event_lblConfigMouseClicked
+
+    private void seleccionCat(String cat) {
+        peliCat = new PeliculasCategoria(cat);
+        jScrollPane1.setViewportView(peliCat);
+        Animacion.Animacion.mover_izquierda(0, -230, 2, 2, pnlPeli);
+        menPeli = 0;
+        Conexion.cerrarConexion(Conexion.contarConexiones());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JScrollPane jScrollPaneChico;
     private javax.swing.JLabel lblAccion;
     private javax.swing.JLabel lblAventura;
+    public static javax.swing.JLabel lblBusqueda;
+    private javax.swing.JLabel lblBusqueda2;
     private javax.swing.JLabel lblCambio;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblCienFicc;
@@ -439,14 +603,16 @@ public class Peliculas1 extends javax.swing.JPanel {
     private javax.swing.JLabel lblInfantil;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblLatin;
-    private javax.swing.JLabel lblMenuCerr;
-    private javax.swing.JLabel lblMenuPel;
+    public static javax.swing.JLabel lblMenuCerr;
+    public static javax.swing.JLabel lblMenuPel;
     private javax.swing.JLabel lblMusic;
     private javax.swing.JLabel lblNomPerfil;
     private javax.swing.JLabel lblSuspenso;
     private javax.swing.JLabel lblTerror;
     private javax.swing.JPanel pnlCerrar;
+    public static javax.swing.JPanel pnlMuestraPeli;
     private javax.swing.JPanel pnlPeli;
-    private javax.swing.JPanel pnlSuperior;
+    public static javax.swing.JPanel pnlSuperior;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }
